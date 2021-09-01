@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    Dashboard | Data
+        
+{% endblock title %}
+
+
+
+{% block content %}
+{% if hp%}
+  
+
+
+<div class="container">
+ 
+<table class="table mt-4">
+
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">title</th>
+       
+        <th scope="col">author</th>
+        
+        <th scope="col">Edit</th>
+        
+        <th scope="col">Delete</th>
+      
+      </tr>
+    </thead>
+
+
+    {% for h in hp %}
+
+
+    <tbody>
+  
+        {% if  user.id == h.author.id %}
+                      
+      <tr>
+        <th scope="row">{{h.id}}</th>
+        <th scope="row">{{h.title}}</th>
+        <td>{{h.author}}</td>
+
+
+        <td>
+            <a href="{% url 'editblog' h.id %}" class="btn btn-primary">Edit</a></td>
+
+        <td>  
+            <form action="{% url 'delete' h.id %}" method="post">
+                {% csrf_token %}
+
+       <input type="submit" class="btn btn-danger" value="delete">
+
+
+        </form>
+
+        </td>
+
+
+
+  
+      </tr>
+    </tbody>
+   {% endif %}
+    {% endfor %}
+     </table>
+
+
+     {% else %}
+      <h2>No record</h2>
+     {% endif %}
+
+
+     </div>
+    {% endblock content %}

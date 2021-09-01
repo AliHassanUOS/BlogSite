@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Profile | Change
+
+ 
+{% endblock title %}
+
+
+{% block content %}
+  
+<div class="container">
+    
+<h1> Welcome {{request.user}} </h1>
+
+<form action="" method="post">
+    {% csrf_token %}
+
+
+    {% for fm in  profilefm %}
+   
+    {{fm.label_tag}} {{fm}} {{fm.errors | striptags}} <br>
+       
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Edit</button>
+
+
+    {% if messages %}
+
+    {% for message in messages  %}
+
+    <div class="form-group">
+
+        <div class="alert alert-success">
+            {{message}}
+
+        </div>
+
+    </div>
+      
+    {% endfor %}
+      
+    {% endif %}
+    
+
+
+
+</form>
+
+
+</div>
+
+{% endblock content %}

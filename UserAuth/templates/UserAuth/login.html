@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+
+  Login Page | Blog
+  
+{% endblock title %}
+
+
+{% block content %}
+
+
+
+<div class="container mt-3">
+
+    <form action="" method="post">
+      {% csrf_token %}
+
+        {% if authform.non_field_errors %}
+
+        {% for error in authform.non_field_errors  %}
+    
+           <p>  {{error}} </p>
+    
+        {% endfor %}
+          
+        {% endif %}
+    
+
+        {% for fm in authform %}
+
+        {{fm.label_tag}} {{fm}} {{fm.errors}} <br> <br><br>
+          
+        {% endfor %}
+
+        <button type="submit" class="btn btn-primary">Login</button>
+
+
+
+    </form>
+
+</div>
+
+
+
+{% endblock content %}
